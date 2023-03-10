@@ -1,0 +1,63 @@
+BACKEND APPLICATION
+
+Create a node.js application with express.js
+It should have two collections:
+
+**Users**
+ - name - String
+ - country
+ - state
+ - email
+ - addresses: [ ] Array < { street_name, city, state, country, contact_no  } >
+
+**Products**
+ - name
+ - cost_unit_price
+ - qty_available
+ - sku 
+
+SKU 
+- SKU stands for “stock keeping unit”
+- it is a number (usually eight alphanumeric digits) that retailers assign 
+  to products to keep track of stock levels internally. 
+- If a product has different colors and sizes, 
+- each variation has a unique SKU number.
+
+**Orders**
+- create the schema for Orders, it should have info of product
+- it should maintain the relation for users, and products
+- maintain status of order - Confirmed | Yet to Dispatch | Dispatched | Delivered
+- updates to order should be maintained as a timeline 
+   ( Order made at A, dispatched at B, Dispatched at C, Out for delivery at D )
+
+
+Create the following APIs:
+
+Add a new order:
+a user should be able to create a new order
+ensure validations for all APIs are in place ( parameters etc. )
+update product qty once order is placed
+incase qty is more than existing, throw errors
+update order
+Update Order Status
+update order status of a current order
+update timeline of the order
+
+Orders Summary between a date range:
+The API It should be based on start and end date ( start_date=2017-01-01&end_date=2017-12-01 ) [ you can apply range with gte -> $gte:ISODate(“2020-03-01”) ]
+return in the following format
+
+{ 
+   stats: { 
+      totalOrders: n
+      [status]: // for each status, give the count of orders
+			for ex
+      "ORDER_CONFIRMED": 45, ...
+   }
+}
+
+Get Past Orders For a certain User
+for example GET /orders/<user-id>
+for a certain user, retrieve all their historical orders
+it should have user information pulled in
+ensure that each order has info of where the order was delivered to, a user should be able to see each order details on it
